@@ -1,0 +1,18 @@
+{
+  "navbar": {
+    "heading": "Navigation",
+    "title": "Navigation menu",
+    "home": "Home",
+    "wallet": "Wallet",
+    "expenses": "Expenses",
+    "analytics": "Analytics"
+  },
+  "notifications": {
+    "heading": "Notifications",
+    "title": "Notifications menu"
+  },
+  "profile": {
+    "heading": "Profile",
+    "title": "Profile information"
+  }
+}

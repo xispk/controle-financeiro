@@ -1,8 +1,23 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/index.scss';
+import type { AppProps } from 'next/app';
+import type { NextPage } from 'next';
+import type { ReactElement } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { appWithTranslation } from 'next-i18next';
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactElement;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(<Component {...pageProps} />);
+  // return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default appWithTranslation(MyApp);

@@ -1,0 +1,24 @@
+:root {
+  --clr-body: #111318;
+  --clr-font-primary: #bfc1c0;
+  --clr-panels: #1d2129;
+  --clr-select: #8ab6e9;
+  --clr-information: #67a9ed;
+  --clr-caution: #ffd69f;
+  --clr-success: #94ce9c;
+  --clr-danger: #eb999a;
+
+  --font-primary: 'Poppins', sans-serif;
+  --font-nav-icons: 40px;
+}
+
+html[data-theme='light'] {
+  --clr-body: #ffffff;
+  --clr-font-primary: #4f4f50;
+  --clr-panels: #f3f4f5;
+  --clr-select: #2f5392;
+  --clr-information: #2c62ba;
+  --clr-caution: #fb902d;
+  --clr-success: #80ae35;
+  --clr-danger: #cc0000;
+}

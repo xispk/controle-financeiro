@@ -1,0 +1,30 @@
+@use './mixins' as *;
+
+// resets
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  border: none;
+  outline: none;
+  user-select: none;
+}
+
+body {
+  position: relative;
+  font-family: var(--font-primary);
+  background-color: var(--clr-body);
+  height: 100vh;
+}
+
+.container {
+  padding: 10px 20px;
+
+  @include xl {
+    max-width: 1330px;
+    margin: 0 auto;
+  }
+}

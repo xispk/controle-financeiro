@@ -1,0 +1,14 @@
+{
+  "description": {
+    "part1": "Edite <1>src/App.js</1> e salve para recarregar.",
+    "part2": "Aprender React"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "Inglês"
+  },
+  "themes": {
+    "light": "Claro",
+    "dark": "Escuro"
+  }
+}
