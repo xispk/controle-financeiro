@@ -69,7 +69,7 @@ const Login = () => {
         `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions`,
         values,
         {
-          // withCredentials: true,
+          withCredentials: true,
           headers: { 'Accept-Language': `${router.locale}` },
         }
       );
