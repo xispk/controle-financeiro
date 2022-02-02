@@ -1,8 +1,4 @@
 {
-  "description": {
-    "part1": "Edit <1>src/App.js</1> and save to reload.",
-    "part2": "Learn React"
-  },
   "languages": {
     "pt": "Portuguese",
     "en": "English"
@@ -10,5 +6,8 @@
   "themes": {
     "light": "Light",
     "dark": "Dark"
+  },
+  "landing": {
+    "page-title": "Cifrão de ouro | Landing Page"
   }
 }

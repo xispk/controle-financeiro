@@ -25,7 +25,7 @@ const Navbar = ({ links }: { links: LinkType[] }) => {
   return (
     <>
       <GiHamburgerMenu
-        className='topbar__icon topbar__icon--menu-trigger'
+        className='navigation__trigger'
         onClick={() => handleCloseMenus('nav')}
         title={t('navbar.title')}
       />
