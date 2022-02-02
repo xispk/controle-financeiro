@@ -66,7 +66,7 @@ const Login = () => {
   const onSubmit = async (values: AuthSchemaInput) => {
     try {
       const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions`,
+        `https://cifraodeouro-api.herokuapp.com/api/sessions`,
         values,
         {
           withCredentials: true,
