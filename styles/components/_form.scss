@@ -6,7 +6,7 @@
   color: var(--clr-font-primary);
   background-color: var(--clr-panels);
   max-width: 500px;
-  padding: 30px 20px;
+  padding: 20px 10px;
   margin: 0 auto;
 
   // form__heading
@@ -136,11 +136,7 @@
 
   // media form small devices and above
   @include sm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    padding: 30px 20px;
 
     &__links {
       flex-direction: row;
@@ -151,6 +147,14 @@
       flex-direction: row;
       font-size: 22px;
     }
+  }
+
+  @include lg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
   }
 }
 

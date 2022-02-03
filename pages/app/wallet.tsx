@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 import AppLayout from '../../components/app/AppLayout';
-import HeaderProvider from '../../components/app/store';
+import AuthProvider from '../../contexts/authContext';
 import { useTranslation } from 'next-i18next';
 
 const Wallet = () => {
@@ -19,9 +19,9 @@ export default Wallet;
 
 Wallet.getLayout = function getLayout(page: ReactElement) {
   return (
-    <HeaderProvider>
+    <AuthProvider>
       <AppLayout>{page}</AppLayout>
-    </HeaderProvider>
+    </AuthProvider>
   );
 };
 

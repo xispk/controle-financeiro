@@ -1,10 +1,10 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import AppLayout from '../../components/app/AppLayout';
-import HeaderProvider from '../../components/app/store';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
+import AuthProvider from '../../contexts/authContext';
 
 const AppHome = () => {
   const { t } = useTranslation('app-index');
@@ -20,9 +20,9 @@ export default AppHome;
 
 AppHome.getLayout = function getLayout(page: ReactElement) {
   return (
-    <HeaderProvider>
+    <AuthProvider>
       <AppLayout>{page}</AppLayout>
-    </HeaderProvider>
+    </AuthProvider>
   );
 };
 

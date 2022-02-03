@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { useState, useRef } from 'react';
-import type { MouseEvent, ReactNode } from 'react';
+import { useRef } from 'react';
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'next-i18next';
 import { MdOutlineClose } from 'react-icons/md';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import { useHeader } from './app/store';
+import { useHeader } from '../contexts/headerContext';
 
 export interface LinkType {
   url: string;

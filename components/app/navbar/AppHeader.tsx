@@ -4,7 +4,7 @@ import Navbar, { LinkType } from '../../Navbar';
 import NotificationsMenu from './NotificationsMenu';
 import ProfileMenu from './ProfileMenu';
 import IconCoin from '../../IconCoin';
-import { useHeader } from '../store';
+import HeaderProvider from '../../../contexts/headerContext';
 
 const AppHeader = () => {
   const { t } = useTranslation();
@@ -17,18 +17,20 @@ const AppHeader = () => {
   ];
 
   return (
-    <header className='header'>
-      <div className='container'>
-        <div className='header__left'>
-          <IconCoin className='header__logo' />
-          <Navbar links={navbarLinks} />
+    <HeaderProvider>
+      <header className='header'>
+        <div className='container'>
+          <div className='header__left'>
+            <IconCoin className='header__logo' />
+            <Navbar links={navbarLinks} />
+          </div>
+          <div className='header__right'>
+            <NotificationsMenu />
+            <ProfileMenu />
+          </div>
         </div>
-        <div className='header__right'>
-          <NotificationsMenu />
-          <ProfileMenu />
-        </div>
-      </div>
-    </header>
+      </header>
+    </HeaderProvider>
   );
 };
 

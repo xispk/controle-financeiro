@@ -21,7 +21,11 @@ body {
 }
 
 .container {
-  padding: 10px 20px;
+  padding: 10px;
+
+  @include sm {
+    padding: 10px 20px;
+  }
 
   @include xl {
     max-width: 1330px;

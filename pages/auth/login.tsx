@@ -18,8 +18,11 @@ import {
   MdCheckCircle,
   MdInfo,
 } from 'react-icons/md';
+import { useAuth } from '../../contexts/authContext';
+import Spinner from '../../components/Spinner';
 
 const Login = () => {
+  const { accessToken } = useAuth();
   const [authResponse, setAuthResponse] = useState<{
     status: string;
     message: string;
@@ -79,6 +82,9 @@ const Login = () => {
 
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
+
+      // redirect to the app homepage
+      router.push('/app');
     } catch (error: any) {
       if (error.response) {
         setAuthResponse({
@@ -107,6 +113,12 @@ const Login = () => {
 
     return () => clearTimeout(timeOut);
   }, [authResponse]);
+
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      router.push('/app');
+    }
+  }, [router]);
 
   return (
     <>
