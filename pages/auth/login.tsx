@@ -66,15 +66,19 @@ const Login = () => {
   const onSubmit = async (values: AuthSchemaInput) => {
     try {
       const { data } = await axios.post(
-        `https://cifraodeouro-api.herokuapp.com/api/sessions`,
+        `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions`,
         values,
         {
-          withCredentials: true,
           headers: { 'Accept-Language': `${router.locale}` },
         }
       );
 
-      setAuthResponse({ status: data.status, message: data.message });
+      setAuthResponse({ status: 'success', message: data.message });
+
+      const { accessToken, refreshToken } = data.data;
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
     } catch (error: any) {
       if (error.response) {
         setAuthResponse({
