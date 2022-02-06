@@ -103,12 +103,6 @@ const Login = () => {
     return () => clearTimeout(timeOut);
   }, [authResponse]);
 
-  useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      router.push('/app');
-    }
-  }, []);
-
   return (
     <>
       <Head>

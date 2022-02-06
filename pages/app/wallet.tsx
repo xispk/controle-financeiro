@@ -23,7 +23,7 @@ export default Wallet;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale as string, [
+      ...(await serverSideTranslations((context.locale as string) || 'pt', [
         'common',
         'app-header',
         'wallet',
