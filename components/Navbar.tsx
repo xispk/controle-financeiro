@@ -5,14 +5,14 @@ import { useTranslation } from 'next-i18next';
 import { MdOutlineClose } from 'react-icons/md';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import { useHeader } from '../contexts/headerContext';
+import { useHeader } from 'contexts';
 
 export interface LinkType {
   url: string;
   text: string;
 }
 
-const Navbar = ({ links }: { links: LinkType[] }) => {
+export const Navbar = ({ links }: { links: LinkType[] }) => {
   const { isNavOpen, handleCloseMenus } = useHeader();
   const navbarRef = useRef(null);
   const { t } = useTranslation('app-header');
@@ -56,5 +56,3 @@ const Navbar = ({ links }: { links: LinkType[] }) => {
     </>
   );
 };
-
-export default Navbar;

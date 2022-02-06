@@ -11,18 +11,17 @@ import { object, string, TypeOf } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
-import IconCoin from '../../components/IconCoin';
+import { IconCoin } from 'components';
+
 import {
   MdReport,
   MdReportProblem,
   MdCheckCircle,
   MdInfo,
 } from 'react-icons/md';
-import { useAuth } from '../../contexts/authContext';
-import Spinner from '../../components/Spinner';
+import { mutate } from 'swr';
 
 const Login = () => {
-  const { accessToken } = useAuth();
   const [authResponse, setAuthResponse] = useState<{
     status: string;
     message: string;
@@ -68,23 +67,13 @@ const Login = () => {
 
   const onSubmit = async (values: AuthSchemaInput) => {
     try {
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/sessions`,
-        values,
-        {
-          headers: { 'Accept-Language': `${router.locale}` },
-        }
-      );
+      const { data } = await axios.post(`/api/auth/login`, values);
 
       setAuthResponse({ status: 'success', message: data.message });
 
-      const { accessToken, refreshToken } = data.data;
-
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-
+      mutate('/api/users/me');
       // redirect to the app homepage
-      router.push('/app');
+      // router.push('/app');
     } catch (error: any) {
       if (error.response) {
         setAuthResponse({
@@ -118,7 +107,7 @@ const Login = () => {
     if (localStorage.getItem('accessToken')) {
       router.push('/app');
     }
-  }, [router]);
+  }, []);
 
   return (
     <>

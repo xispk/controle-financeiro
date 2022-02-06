@@ -1,7 +1,7 @@
 import { MdOutlineClose, MdNotifications } from 'react-icons/md';
 import { useTranslation } from 'next-i18next';
 
-import { useHeader } from '../../../contexts/headerContext';
+import { useHeader } from 'contexts';
 
 const FloatingMenu = () => {
   const { isNotificationsOpen, handleCloseMenus } = useHeader();

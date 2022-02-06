@@ -1,6 +1,5 @@
 import { useState, createContext, useContext } from 'react';
 import type { ReactElement } from 'react';
-import axios from 'axios';
 
 interface HeaderContext {
   isProfileOpen?: boolean;

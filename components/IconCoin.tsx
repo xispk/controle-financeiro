@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 
-const IconCoin = (props: SVGProps<SVGSVGElement>) => {
+export const IconCoin = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width='1em'
@@ -314,5 +314,3 @@ const IconCoin = (props: SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-
-export default IconCoin;

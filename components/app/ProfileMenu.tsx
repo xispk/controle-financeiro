@@ -2,7 +2,7 @@ import { MdOutlineClose } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
 import { useTranslation } from 'next-i18next';
 
-import { useHeader } from '../../../contexts/headerContext';
+import { useHeader } from 'contexts';
 
 const ProfileMenu = () => {
   const { isProfileOpen, handleCloseMenus } = useHeader();

@@ -1,12 +1,10 @@
 import { useTranslation } from 'next-i18next';
-import Navbar, { LinkType } from '../../Navbar';
-
 import NotificationsMenu from './NotificationsMenu';
 import ProfileMenu from './ProfileMenu';
-import IconCoin from '../../IconCoin';
-import HeaderProvider from '../../../contexts/headerContext';
+import { IconCoin, Navbar, LinkType } from 'components';
+import HeaderProvider from 'contexts/headerContext';
 
-const AppHeader = () => {
+export const AppHeader = () => {
   const { t } = useTranslation();
 
   const navbarLinks: LinkType[] = [
@@ -33,5 +31,3 @@ const AppHeader = () => {
     </HeaderProvider>
   );
 };
-
-export default AppHeader;

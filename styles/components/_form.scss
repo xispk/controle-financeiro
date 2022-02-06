@@ -1,13 +1,12 @@
 @use '../mixins' as *;
 
 .form {
-  position: relative;
   font-size: 25px;
   color: var(--clr-font-primary);
   background-color: var(--clr-panels);
+  width: 100%;
   max-width: 500px;
   padding: 20px 10px;
-  margin: 0 auto;
 
   // form__heading
   &__heading {
@@ -135,27 +134,19 @@
   }
 
   // media form small devices and above
-  @include sm {
-    padding: 30px 20px;
+  // @include sm {
+  //   padding: 30px 20px;
 
-    &__links {
-      flex-direction: row;
-      gap: 50px;
-    }
+  //   &__links {
+  //     flex-direction: row;
+  //     gap: 50px;
+  //   }
 
-    &__response {
-      flex-direction: row;
-      font-size: 22px;
-    }
-  }
-
-  @include lg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-  }
+  //   &__response {
+  //     flex-direction: row;
+  //     font-size: 22px;
+  //   }
+  // }
 }
 
 .logo {

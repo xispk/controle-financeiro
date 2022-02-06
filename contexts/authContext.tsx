@@ -2,7 +2,6 @@ import { useState, createContext, useContext, useEffect } from 'react';
 import type { ReactElement } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
 interface User {
   _id: string;
@@ -18,43 +17,30 @@ interface User {
 }
 
 interface AuthContext {
-  accessToken: string | null;
-  refreshToken: string | null;
+  user: User | null;
+  setUser: Function;
 }
 
 const AuthContext = createContext<AuthContext>({
-  accessToken: null,
-  refreshToken: null,
+  user: null,
+  setUser: () => false,
 });
 
-export const fetcher = (url: string, token: string) =>
+export const fetcher = (url: string, headers = {}) =>
   axios
     .get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      withCredentials: true,
+      headers,
     })
     .then((res) => res.data);
 
 const AuthProvider = ({ children }: { children: ReactElement }) => {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (accessToken && refreshToken) {
-      setAccessToken(localStorage.getItem('accessToken'));
-      setRefreshToken(localStorage.getItem('refreshToken'));
-    } else {
-      router.push('/auth/login');
-    }
-  }, []);
-
   const values = {
-    accessToken,
-    refreshToken,
+    user,
+    setUser,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
