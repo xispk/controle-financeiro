@@ -21,9 +21,11 @@ export default Wallet;
 
 // this should be on the page component/ parent component
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const locale = context.locale || 'pt';
+
   return {
     props: {
-      ...(await serverSideTranslations((context.locale as string) || 'pt', [
+      ...(await serverSideTranslations(locale, [
         'common',
         'app-header',
         'wallet',
