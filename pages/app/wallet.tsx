@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
@@ -20,10 +20,10 @@ const Wallet = () => {
 export default Wallet;
 
 // this should be on the page component/ parent component
-export const getStaticProps = async ({ locale }: { locale: string }) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, [
+      ...(await serverSideTranslations(context.locale as string, [
         'common',
         'app-header',
         'wallet',
