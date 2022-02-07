@@ -3,11 +3,13 @@ import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 const hostUrl = process.env.NEXT_PUBLIC_SERVER_ENDPOINT;
 
 export const middleware = async (req: NextRequest, ev: NextFetchEvent) => {
-  const refreshCookie = req.cookies['refreshToken'];
+  const res = await fetch(`${hostUrl}/api/users/me`, {
+    headers: req.headers,
+  });
 
-  if (refreshCookie) {
+  if (res.status === 200) {
     return NextResponse.redirect(`${hostUrl}/app`);
+  } else {
+    return NextResponse.next();
   }
-
-  return NextResponse.next();
 };
