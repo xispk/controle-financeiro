@@ -1,6 +1,7 @@
 @use '../mixins' as *;
 
 .form {
+  position: relative;
   font-size: 25px;
   color: var(--clr-font-primary);
   background-color: var(--clr-panels);
