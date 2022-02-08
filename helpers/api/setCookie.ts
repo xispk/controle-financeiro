@@ -17,10 +17,10 @@ export const setCookie = (res: NextApiResponse, cookieInfo: CookieInfo[]) => {
       typeof value === 'object' ? `j:${JSON.stringify(value)}` : String(value);
 
     // set the expires option based on the maxAge
-    if (options.maxAge) {
-      options.expires = new Date(Date.now() + options.maxAge);
-      options.maxAge /= 1000;
-    }
+    // if (options.maxAge) {
+    //   options.expires = new Date(Date.now() + options.maxAge);
+    //   options.maxAge /= 1000;
+    // }
 
     // creates a cookie
     return serialize(name, stringValue, options);

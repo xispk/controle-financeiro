@@ -27,13 +27,11 @@ const deserializeUser = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // check if the accessToken is valid and reset cookie/x-access-token
     if (accessToken) {
-      res.setHeader('x-access-token', accessToken);
-
       const accessCookieInfo = {
         name: 'accessToken',
         value: accessToken,
         options: {
-          maxAge: 900000,
+          maxAge: 900,
           httpOnly: true,
           path: '/',
           sameSite: true,
@@ -67,5 +65,7 @@ const deserializeUser = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default apiHandler({
-  get: deserializeUser,
+  get: {
+    handler: deserializeUser,
+  },
 });

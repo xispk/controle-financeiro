@@ -1,25 +1,45 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 export { apiHandler };
+
 // middlewares
-import { connectDB, errorHandler } from 'middleware';
+import { connectDB, errorHandler, validateResource } from 'middleware';
+import { AnyZodObject } from 'zod';
 
 // the handler supports these methods
 interface HandlerWithMethods {
-  post?: (req: NextApiRequest, res: NextApiResponse) => Promise<any>;
-  put?: (req: NextApiRequest, res: NextApiResponse) => Promise<any>;
-  get?: (req: NextApiRequest, res: NextApiResponse) => Promise<any>;
-  delete?: (req: NextApiRequest, res: NextApiResponse) => Promise<any>;
+  post?: {
+    handler: NextApiHandler;
+    dataFrom?: 'body' | 'query' | 'headers';
+    schema?: AnyZodObject;
+  };
+  put?: {
+    handler: NextApiHandler;
+    dataFrom?: 'body' | 'query' | 'headers';
+    schema?: AnyZodObject;
+  };
+  get?: {
+    handler: NextApiHandler;
+    dataFrom?: 'body' | 'query' | 'headers';
+    schema?: AnyZodObject;
+  };
+  delete?: {
+    handler: NextApiHandler;
+    dataFrom?: 'body' | 'query' | 'headers';
+    schema?: AnyZodObject;
+  };
 }
 
 // handler for global middlewares
 const apiHandler =
-  (handler: HandlerWithMethods) =>
+  (methods: HandlerWithMethods) =>
   async (req: NextApiRequest, res: NextApiResponse) => {
     const method = req.method?.toLocaleLowerCase();
+    const { handler, dataFrom, schema } =
+      methods[method as keyof HandlerWithMethods]!;
 
     // check if handler supports http method from the request
-    if (!handler[method as keyof HandlerWithMethods]) {
+    if (!methods[method as keyof HandlerWithMethods]) {
       return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 
@@ -27,8 +47,13 @@ const apiHandler =
       // connect to the database
       await connectDB();
 
+      // validate data from the request based on handler schema
+      if (dataFrom && schema) {
+        validateResource(req[dataFrom], schema);
+      }
+
       // route handler
-      await handler[method as keyof HandlerWithMethods]!(req, res);
+      await methods[method as keyof HandlerWithMethods]?.handler(req, res);
     } catch (error) {
       // if the api handler throws an error this is triggered
       errorHandler(error, res);

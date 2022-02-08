@@ -8,6 +8,7 @@ import { sessionPrivateFields, userPrivateFields } from 'models';
 import { authServices, userServices, accountServices } from 'services';
 import { setCookie } from 'helpers/api';
 import { apiHandler } from 'helpers/api';
+import { createSessionSchema } from 'schemas';
 
 // handler that executes the flow for user login
 const createSessionHandler = async (
@@ -61,7 +62,7 @@ const createSessionHandler = async (
       name: 'refreshToken',
       value: refreshToken,
       options: {
-        maxAge: 3.154e10,
+        maxAge: 900000,
         httpOnly: true,
         path: '/',
         sameSite: true,
@@ -83,7 +84,7 @@ const createSessionHandler = async (
       name: 'accessToken',
       value: accessToken,
       options: {
-        maxAge: 900000,
+        maxAge: 900,
         httpOnly: true,
         path: '/',
         sameSite: true,
@@ -103,5 +104,9 @@ const createSessionHandler = async (
 };
 
 export default apiHandler({
-  post: createSessionHandler,
+  post: {
+    handler: createSessionHandler,
+    dataFrom: 'body',
+    schema: createSessionSchema,
+  },
 });
